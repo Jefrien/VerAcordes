@@ -1,0 +1,95 @@
+
+<html>
+<head>
+<title>ToneChord - Inicio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD1HUyrJ0xJm2_pcp3EgKqVBkA4RRugmIU",
+    authDomain: "tonechord-ae558.firebaseapp.com",
+    databaseURL: "https://tonechord-ae558.firebaseio.com",
+    storageBucket: "tonechord-ae558.appspot.com",
+    messagingSenderId: "729431960504"
+  };
+  firebase.initializeApp(config);
+  // Get a reference to the database service
+  var database = firebase.database();
+</script>
+<!-- FIREBASE -->
+<script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
+<script src="../js/index.js"></script>
+<link rel="stylesheet" href="../css/index.css">
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+
+
+<script>
+
+	window.onload = function initApp(){
+		
+		
+		var user = firebase.auth().currentUser;
+		var name, email, photoUrl, uid;
+
+		if (user != null) {
+			console.log("NOMBRE"+user.displayName);
+				document.getElementById("tituloNombre").innerHTML = "Bienvenido "+user.displayName;
+		}
+	}
+
+	function mostrarMenu(){
+	console.log("Funciona");
+		//document.getElementById("menu_div").fadeIn();
+		$("#menu_div").slideToggle("slow");
+	}
+	
+	
+
+</script>
+
+</head>
+<body>
+
+<div class="header">
+
+</div>
+
+<div class="col-3">
+<div class="titulo"><h1>ToneChord</h1></div>
+</div>
+
+<div class="col-9">
+
+
+
+<div class="menu">
+<div id="menu-launcher" onclick="mostrarMenu()" class="btnMenu ripplelink"><span>MENU</span></div>
+<div id="menu_div" class="menu_div">
+<a href="index.html" class="ripplelink item-seleccionado"><span>DESCARGA</span></a>
+<a href="login.html" class="ripplelink"><span>TONECHORD WEB</span></a>
+<a href="#" class="ripplelink"><span>DONAR</span></a>
+<a href="#" class="ripplelink"><span>CONTACTO</span></a>
+</div>
+</div>
+</div>
+
+
+<div class="col-12">
+<h1 class="subTitulo" id="tituloNombre">
+Bienvenido 
+</h1>
+</div>
+<hr>
+<div class="col-3">
+	<ul class="lista">
+		<li><a href="#">INICIO</a></li>
+		<li><a href="#">MIS CHORDS</a></li>
+		<li><a href="#">MI CUENTA</a></li>
+	</ul>
+</div>
+
+</body>
+</html>

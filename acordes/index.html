@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HTML5, CSS3 and JavaScript demo</title>
+<link type="text/css" rel="stylesheet" href="css/style.css"/>
+</head>
+<body onLoad="img_canvas();">
+<!-- Start your code here -->
+
+<!-- IMAGENES -->
+	<img src="img/bg_madera.jpg" id="fondoCanvas" class="hidden">
+	<img src="img/circulo.png" id="circuloCanvas" class="hidden">
+
+	<center>
+	<input type="text" id="txtAcorde"><button id="btn" onclick="clickVer()">VER</button>
+	</center>
+	
+  <table class="contenido"><tr><td>
+    <tr><td>
+    <table style="margin-top: -10px">
+      <tr style="height: 50px">
+        <td><span class="textoCuerda">e</span></td>
+      </tr>
+      <tr style="height: 45px">
+        <td><span class="textoCuerda">B</span></td>
+      </tr>
+      <tr style="height: 50px">
+        <td><span class="textoCuerda">G</span></td>
+      </tr>
+      <tr style="height: 45px">
+        <td><span class="textoCuerda">D</span></td>
+      </tr>
+      <tr style="height: 45px">
+        <td><span class="textoCuerda">A</span></td>
+      </tr>
+     <tr style="height: 45px">
+        <td><span class="textoCuerda">E</td>
+      </tr>
+      </table>
+      </td>
+   <td>
+   <table>
+   <tr><td colspan="4">
+<canvas id="img" width="600" height="300">
+</canvas>
+</td></tr>
+<tr>
+<td width="155px"></td>
+<td width="140px"><span class="textoCuerda" id="numeroTrasteCanvas"></span></td>
+</tr></table>
+
+      </td></tr></table>
+  
+  
+  
+
+
+<!-- End your code here -->
+<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>

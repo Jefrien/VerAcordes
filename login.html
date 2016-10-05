@@ -1,0 +1,199 @@
+
+<html>
+<head>
+<title>ToneChord - Iniciar sesión</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD1HUyrJ0xJm2_pcp3EgKqVBkA4RRugmIU",
+    authDomain: "tonechord-ae558.firebaseapp.com",
+    databaseURL: "https://tonechord-ae558.firebaseio.com/usuarios",
+    storageBucket: "tonechord-ae558.appspot.com",
+    messagingSenderId: "729431960504"
+  };
+  firebase.initializeApp(config);
+</script>
+<!-- FIREBASE -->
+
+<script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
+<script src="js/index.js"></script>
+<link rel="stylesheet" href="css/index.css">
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+<script>
+
+
+	function mostrarMenu(){
+	console.log("Funciona");
+		//document.getElementById("menu_div").fadeIn();
+		$("#menu_div").slideToggle("slow");
+	}
+	
+	function registro(){
+	var email = document.getElementById("correoR").value;
+	var password = document.getElementById("passR").value;
+	var nombre = document.getElementById("nombreR").value;
+		firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+			// Handle Errors here.
+			var errorCode = error.code;
+			var errorMessage = error.message;
+			console.log("error code registro: "+errorCode);
+			console.log("error message registro: "+errorMessage);
+			firebase.auth().onAuthStateChanged(function(user) {
+			  if (user) {
+				// User is signed in.
+				writeUserData(user.uid,nombre,user.email,"Hola, soy nuevo en tonechord :)","0",user.photoURL);
+				window.location.href = "home/index.html";
+			  } else {
+				// No user is signed in.
+			  }
+			});
+			// ...
+		});
+	}
+	
+	function login(){
+		var email = document.getElementById("correo").value.trim();
+		var password = document.getElementById("pass").value.trim();
+		
+		if(email == "" || password == "" || email.length < 6 || password.length < 6){
+			alert("Campos vacios");
+		} else {
+		
+			firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+			  // Handle Errors here.
+			  var errorCode = error.code;
+			  var errorMessage = error.message;
+			  console.log("error code: "+errorCode);
+				console.log("error message: "+errorMessage);
+			  // ...
+			});
+		}
+	}
+	
+	function writeUserData(userId, name, email,status,prov, imageUrl) {
+	  firebase.database().ref('usuarios/' + userId).set({
+	    uid: userId,
+		nombre: name,
+		email: email,
+		imagen : imageUrl,
+		proveedor: prov,
+		estado: status
+	  });
+	}
+	
+	function clickLogin(){
+		$("#login-div").hide();
+		$("#registro-div").fadeIn("fast");
+		document.getElementById("registro-div").style.display = "inline-block";
+	}
+	function clickRegistro(){
+		$("#registro-div").hide();
+		$("#login-div").fadeIn("fast");
+		document.getElementById("registro-div").style.display = "none";
+	}
+
+</script>
+
+</head>
+<body>
+
+<div class="header">
+
+</div>
+
+<div class="col-3">
+<div class="titulo"><h1>ToneChord</h1></div>
+</div>
+
+<div class="col-9">
+
+
+
+<div class="menu">
+<div id="menu-launcher" onclick="mostrarMenu()" class="btnMenu ripplelink"><span>MENU</span></div>
+<div id="menu_div" class="menu_div">
+<a href="index.html" class="ripplelink item-seleccionado"><span>DESCARGA</span></a>
+<a href="login.html" class="ripplelink"><span>TONECHORD WEB</span></a>
+<a href="#" class="ripplelink"><span>DONAR</span></a>
+<a href="#" class="ripplelink"><span>CONTACTO</span></a>
+</div>
+</div>
+</div>
+
+
+<div id="login-div" class="col-12" style="margin: 0 auto;display:inline-block; text-align: center;">
+
+<div class="hit-the-floor">Iniciar sesión</div>
+
+	<div id="loginF" class="centrado">
+		 <div class="group">      
+			<input id="correo" name="correo" type="text" required>
+			<span class="highlight"></span>
+			<span class="bar"></span>
+			<label>Correo Electrónico</label>
+		</div>
+		 <div class="group">      
+			<input id="pass" name="pass" type="password" required>
+			<span class="highlight"></span>
+			<span class="bar"></span>
+			<label>Contraseña</label>
+		</div>
+		
+		<div class="group">
+			<Button class="ripplelink white w300" onclick="login()">INICIAR SESIÓN</Button>
+		</div>
+		<br>
+		
+	</div>
+
+	<br />
+			<span class="texto">No tienes cuenta ?<span onclick="clickLogin()" class="link"> Registrate!</span></span> 
+		
+
+</div>
+
+<div id="registro-div" class="col-12" style="margin: 0 auto;display:none; text-align: center;">
+
+<div class="hit-the-floor">Registro</div>
+
+	<div id="registroF" class="centrado">
+	 <div class="group">      
+			<input id="nombreR" name="nombreR" type="text" required>
+			<span class="highlight"></span>
+			<span class="bar"></span>
+			<label>Nombre completo</label>
+		</div>
+		 <div class="group">      
+			<input id="correoR" name="correoR" type="text" required>
+			<span class="highlight"></span>
+			<span class="bar"></span>
+			<label>Correo Electrónico</label>
+		</div>
+		 <div class="group">      
+			<input id="passR" name="passR" type="password" required>
+			<span class="highlight"></span>
+			<span class="bar"></span>
+			<label>Contraseña</label>
+		</div>
+		
+		<div class="group">
+			<Button class="ripplelink white w300" onclick="registro()">REGISTRO</Button>
+		</div>
+		<br>
+		
+	</div>
+
+	<br />
+			<span class="texto">No tienes cuenta ?<span onclick="clickRegistro()" class="link"> Registrate!</span></span> 
+		
+
+</div>
+
+
+</body>
+</html>

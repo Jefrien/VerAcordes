@@ -1,0 +1,63 @@
+
+<html>
+<head>
+<title>ToneChord - Descarga</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
+<script src="../js/index.js"></script>
+<link rel="stylesheet" href="index.css">
+<link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+
+
+<script>
+
+	 $(document).ready(function () {
+		 $("#btnDonar").click(function donar() {
+			$("#sDonar").click();
+		 })
+		 ;
+	 });
+
+	function mostrarMenu(){
+	console.log("Funciona");
+		//document.getElementById("menu_div").fadeIn();
+		$("#menu_div").slideToggle("slow");
+	}
+
+</script>
+
+</head>
+<body>
+
+<div class="header">
+
+</div>
+
+<div class="col-12">
+<div class="titulo"><h1>ToneChord</h1></div>
+</div>
+
+
+
+
+
+
+<div class="col-12" style="margin-top: 35px;display:inline-block; text-align: center;">
+
+<form action="https://www.paypal.com/cgi-bin/webscr" id="hola" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="LWYGNJWPD4XQE">
+
+      <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_donate_cc_147x47.png" border="0" name="submit">
+        <img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+
+
+</div>
+
+
+
+</body>
+</html>
