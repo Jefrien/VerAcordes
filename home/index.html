@@ -18,6 +18,16 @@
   firebase.initializeApp(config);
   // Get a reference to the database service
   var database = firebase.database();
+  
+  
+  function signOut(){
+	firebase.auth().signOut().then(function() {
+	  // Sign-out successful.
+	  window.location.href = "../index.html";
+	}, function(error) {
+	  // An error happened.
+	});
+  }
 </script>
 <!-- FIREBASE -->
 <script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
@@ -35,9 +45,17 @@
 		var name, email, photoUrl, uid;
 
 		if (user != null) {
-			console.log("NOMBRE"+user.displayName);
-				document.getElementById("tituloNombre").innerHTML = "Bienvenido "+user.displayName;
+		  name = user.displayName;
+		  email = user.email;
+		  photoUrl = user.photoURL;
+		  uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
+						   // this value to authenticate with your backend server, if
+						   // you have one. Use User.getToken() instead.
+						   console.log(email);
+						   document.getElementById("tituloNombre").innerHTML = "Bienvenido "+email;
 		}
+				
+		
 	}
 
 	function mostrarMenu(){
@@ -83,12 +101,11 @@ Bienvenido
 </h1>
 </div>
 <hr>
-<div class="col-3">
-	<ul class="lista">
-		<li><a href="#">INICIO</a></li>
-		<li><a href="#">MIS CHORDS</a></li>
-		<li><a href="#">MI CUENTA</a></li>
-	</ul>
+<div class="col-3" style="margin-top: 20px;">
+<a href="#" class="ripplelink" style="height: 50px; padding-left:70px;padding-right:70px"><span>MIS CHORDS</span></a>
+	<a href="#" class="ripplelink" style="height: 50px; padding-left:50px;padding-right:50px"><span>CHORDS ONLINE</span></a>
+	<a href="#" class="ripplelink" style="height: 50px; padding-left:60px;padding-right:60px"><span>CREAR CHORD</span></a>
+	<a href="#" class="ripplelink" style="height: 50px; padding-left:55px;padding-right:55px" onclick="signOut()"><span>CERRAR SESIÓN</span></a>
 </div>
 
 </body>

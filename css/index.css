@@ -332,24 +332,14 @@ input:focus ~ .highlight {
 }
 
 
-/* MENU UL */
-.lista {
-	list-style: none;
-	width: 100%;
-	left: 0px;
-	right: 0px;
-	position: relative;                                 
-}
-
-.lista li {
-	background-color: #ef7716;
-	
-	text-align: center;
-}
-
-.lista li a {
-	text-decoration: none;
-	text-align: center;
+/* MENSAJES */
+.mensajeError {
+	display: none;
 	color: white;
-	
+	background-color: red;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-radius: 4px 4px 4px 4px;
 }

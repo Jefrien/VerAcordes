@@ -12,7 +12,7 @@
   var config = {
     apiKey: "AIzaSyD1HUyrJ0xJm2_pcp3EgKqVBkA4RRugmIU",
     authDomain: "tonechord-ae558.firebaseapp.com",
-    databaseURL: "https://tonechord-ae558.firebaseio.com/usuarios",
+    databaseURL: "https://tonechord-ae558.firebaseio.com/",
     storageBucket: "tonechord-ae558.appspot.com",
     messagingSenderId: "729431960504"
   };
@@ -26,6 +26,17 @@
 <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
 <script>
 
+	window.onload = function cargo(){
+		firebase.auth().onAuthStateChanged(function(user) {
+			  if (user) {
+				// User is signed in.
+				//writeUserData(user.uid,nombre,user.email,"Hola, soy nuevo en tonechord :)","0",user.photoURL);
+				window.location.href = "home/index.html";
+			  } else {
+				// No user is signed in.
+			  }
+			});
+	}
 
 	function mostrarMenu(){
 	console.log("Funciona");
@@ -43,7 +54,10 @@
 			var errorMessage = error.message;
 			console.log("error code registro: "+errorCode);
 			console.log("error message registro: "+errorMessage);
-			firebase.auth().onAuthStateChanged(function(user) {
+			
+			// ...
+		});
+		firebase.auth().onAuthStateChanged(function(user) {
 			  if (user) {
 				// User is signed in.
 				writeUserData(user.uid,nombre,user.email,"Hola, soy nuevo en tonechord :)","0",user.photoURL);
@@ -52,8 +66,6 @@
 				// No user is signed in.
 			  }
 			});
-			// ...
-		});
 	}
 	
 	function login(){
@@ -61,7 +73,7 @@
 		var password = document.getElementById("pass").value.trim();
 		
 		if(email == "" || password == "" || email.length < 6 || password.length < 6){
-			alert("Campos vacios");
+			mostrarMensaje("No llenaste todos los campos");
 		} else {
 		
 			firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
@@ -70,9 +82,23 @@
 			  var errorMessage = error.message;
 			  console.log("error code: "+errorCode);
 				console.log("error message: "+errorMessage);
+				if(errorCode == "auth/wrong-password"){
+					mostrarMensaje("La contraseña es incorrecta");
+				} else if(errorCode == "auth/invalid-email"){
+					mostrarMensaje("El correo es invalido");
+				} else if(errorCode == "auth/user-not-found"){
+					mostrarMensaje("El usuario ingresado no existe");
+				}
 			  // ...
 			});
 		}
+	}
+	
+	function mostrarMensaje(texto){
+		console.log(texto);
+		$("#mensajeLogin").fadeIn();
+		$("#mensajeLogin").text(texto);
+		setTimeout(function oculto(){$("#mensajeLogin").fadeOut()},3000);
 	}
 	
 	function writeUserData(userId, name, email,status,prov, imageUrl) {
@@ -83,7 +109,13 @@
 		imagen : imageUrl,
 		proveedor: prov,
 		estado: status
-	  });
+	  }, function(error) {
+		  if (error) {
+			alert("Data could not be saved." + error);
+		  } else {
+			alert("Data saved successfully.");
+		  }
+		});
 	}
 	
 	function clickLogin(){
@@ -131,6 +163,11 @@
 <div class="hit-the-floor">Iniciar sesión</div>
 
 	<div id="loginF" class="centrado">
+	
+	<div class="group" style="height: 10px">
+		<span class="mensajeError" id="mensajeLogin"></span>
+	</div>
+		
 		 <div class="group">      
 			<input id="correo" name="correo" type="text" required>
 			<span class="highlight"></span>

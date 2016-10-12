@@ -16,16 +16,71 @@ function getAcorde(valor){
 	var doSostenidoAdd9 = "1,1:1,2:3,3:3,4:1,5:0,0:4";
 	var doSostenido4 = "1,1:4,2:3,3:3,4:0,0:0,0:4";
 	var doSostenido7 = "4,1:2,2:4,3:3,4:0,0:0,0:1";
-	var doSostenidoMenor = "1,1:2,2:3,3:3,4:1,5:0,0,4";
-	// ---------------------- Acorde DO
-	console.log(valor);
+	var doSostenidoMenor = "1,1:2,2:3,3:3,4:1,5:0,0:4";
+	var doSostenidoMaj = "1,1:1,2:1,3:3,4:4,5:0,0:1";
+	var doAdd9 = "0,0:3,2:0,0:2,4:3,5:0,0:1";
+	var do_si = "0,0:1,2:0,0:2,4:2,5:0,0:1";
+	var do11 = "1,1:4,2:1,3:3,4:1,5:0,0:3";
+	var do4 = "3,1:1,2:0,0:3,4:0,0:0,0:1"
+	var do7 = "0,0:1,2:3,3:2,4:3,5:0,0:1";
+	var do9 = "3,1:1,2:2,3:1,4:3,5:1,6:8";
+	var do911 = "1,1:3,2:1,3:3,4:1,5:1,6:3";
+	var doAdd2_si = "0,0:1,2:0,0:0,0:2,5:0,0:1";
+	var doMenor = "1,1:2,2:3,3:3,4:1,5:0,0:3";
+	var doMenor11 = "0,0:4,2:1,3:3,4:1,5:0,0:3";
+	var doMenor7 = "1,1:2,2:1,3:3,4:1,5:0,0:3";
+	var doMaj = "0,0:1,2:0,0:2,4:3,5:0,0:1";
+	var doMaj7 = "0,0:0,0:0,0:2,4:3,5:0,0:1";
+	var doSus2 = "0,0:1,2:0,0:0,0:3,4:0,0:1";
+	var doSus9 = "4,1:2,2:1,3:4,4:0,0:0,0:7";
+	
+	
+	// ---------------------- Ternarios para DO
 	((valor == "c#") ? retorno = doSostenido : false);
 	((valor == "c") ? retorno = doMayor : false);
 	((valor == "c#add9") ? retorno = doSostenidoAdd9 : false);
 	((valor == "c#4") ? retorno = doSostenido4 : false);
 	((valor == "c#7") ? retorno = doSostenido7 : false);
 	((valor == "c#m") ? retorno = doSostenidoMenor : false);
-
+	((valor == "c#maj") ? retorno = doSostenidoMaj : false);
+	((valor == "cadd9") ? retorno = doAdd9 : false);
+	((valor == "c/b") ? retorno = do_si : false);
+	((valor == "c11") ? retorno = do11 : false);
+	((valor == "c4") ? retorno = do4 : false);
+	((valor == "c7") ? retorno = do7 : false);
+	((valor == "c9") ? retorno = do9 : false);
+	((valor == "c911") ? retorno = do911 : false);
+	((valor == "cadd2/b") ? retorno = doAdd2_si : false);
+	((valor == "cm") ? retorno = doMenor : false);
+	((valor == "cm11") ? retorno = doMenor11 : false);
+	((valor == "cm7") ? retorno = doMenor7 : false);
+	((valor == "cmaj") ? retorno = doSostenidoMenor : false);
+	((valor == "cmaj7") ? retorno = doMaj7 : false);
+	((valor == "csus2") ? retorno = doSus2 : false);
+	((valor == "csus9") ? retorno = doSus9 : false);
+	
+	
+	// ---------------------- Acorde RE
+	var re = "2,1:3,2:2,3:0,0:0,0:0,0:1";
+	var reMenor = "1,1:2,2:1,3:3,4:0,0:0,0:3";
+	var reSostenido4 = "4,1:4,2:3,3:1,4:0,0:0,0:1";
+	var reSostenido7 = "3,1:2,2:3,3:1,4:0,0:0,0:1";
+	var reSostenidoMenor = "2,1:4,2:3,3:4,4:0,0:0,0:1";
+	var reSostenidoMenor7 = "2,1:2,2:3,3:1,4:0,0:0,0:1";
+	var reSostenidoMaj7 = "3,1:3,2:3,3:1,4:0,0:0,0:1";
+	var reAdd9 = "2,1:3,2:2,3:0,0:0,0:0,0:1";
+	var re_la = "";
+	
+	// ---------------------- Ternarios para RE
+	((valor == "d") ? retorno = re : false);
+	((valor == "dm") ? retorno = reMenor : false);
+	((valor == "d#4") ? retorno = reSostenido4 : false);
+	((valor == "d#7") ? retorno = reSostenido7 : false);
+	((valor == "d#m") ? retorno = reSostenidoMenor : false);
+	((valor == "d#m7") ? retorno = reSostenidoMenor7 : false);
+	((valor == "d#maj7") ? retorno = reSostenidoMaj7 : false);
+	((valor == "dadd9") ? retorno = reAdd9 : false);
+	
 	return retorno;
 }
 
@@ -73,11 +128,7 @@ function crear_circulo(context,c,t){
   var traste3 = 405;
   var traste4 = 520;
   
-  
-  ((c == "1") ? traste.innerText = c: false);
-  ((c == "2") ? traste.innerText = c: false);
-  ((c == "3") ? traste.innerText = c: false);
-  ((c == "4") ? traste.innerText = c: false);
+  traste.innerText = c;
   
   
   var x,y;
