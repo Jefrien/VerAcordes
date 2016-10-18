@@ -9,14 +9,7 @@
 <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
 <script>
   // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyD1HUyrJ0xJm2_pcp3EgKqVBkA4RRugmIU",
-    authDomain: "tonechord-ae558.firebaseapp.com",
-    databaseURL: "https://tonechord-ae558.firebaseio.com/",
-    storageBucket: "tonechord-ae558.appspot.com",
-    messagingSenderId: "729431960504"
-  };
-  firebase.initializeApp(config);
+  
 </script>
 <!-- FIREBASE -->
 
@@ -26,16 +19,43 @@
 <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
 <script>
 
+	var click = 0;
+	
 	window.onload = function cargo(){
+	
+	var config = {
+    apiKey: "AIzaSyD1HUyrJ0xJm2_pcp3EgKqVBkA4RRugmIU",
+    authDomain: "tonechord-ae558.firebaseapp.com",
+    databaseURL: "https://tonechord-ae558.firebaseio.com/",
+    storageBucket: "tonechord-ae558.appspot.com",
+    messagingSenderId: "729431960504"
+  };
+  firebase.initializeApp(config);
+  var database = firebase.database();
+	
 		firebase.auth().onAuthStateChanged(function(user) {
 			  if (user) {
 				// User is signed in.
-				//writeUserData(user.uid,nombre,user.email,"Hola, soy nuevo en tonechord :)","0",user.photoURL);
-				window.location.href = "home/index.html";
+				localStorage.setItem("email", user.email);
+				setVar();
+				localStorage.setItem("uid", user.uid);
+	window.location.href = "home/index.html";
 			  } else {
 				// No user is signed in.
+				localStorage.setItem("email", null);
+				localStorage.setItem("name", null);
+				localStorage.setItem("uid", null);
 			  }
 			});
+	}
+	
+	function setVar(user){
+		var userId = firebase.auth().currentUser.uid;
+		return firebase.database().ref('usuarios/' + userId).once('value').then(function(snapshot) {
+		  var name = snapshot.val().nombre;
+		  localStorage.setItem("name", name);
+		  // ...
+		});
 	}
 
 	function mostrarMenu(){
@@ -45,9 +65,11 @@
 	}
 	
 	function registro(){
+
 	var email = document.getElementById("correoR").value;
 	var password = document.getElementById("passR").value;
 	var nombre = document.getElementById("nombreR").value;
+	var imagen = "https://firebasestorage.googleapis.com/v0/b/tonechord-ae558.appspot.com/o/no_imagen.png?alt=media&token=7b1b3404-0b4d-4fac-840d-ef503ac8de89";
 		firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
 			// Handle Errors here.
 			var errorCode = error.code;
@@ -55,13 +77,17 @@
 			console.log("error code registro: "+errorCode);
 			console.log("error message registro: "+errorMessage);
 			
+			if(errorCode == "auth/weak-password"){
+				mostrarMensaje2("Contraseña debe ser mayor a 6 caracteres y contener numeros y letras");
+			}
 			// ...
 		});
 		firebase.auth().onAuthStateChanged(function(user) {
 			  if (user) {
 				// User is signed in.
-				writeUserData(user.uid,nombre,user.email,"Hola, soy nuevo en tonechord :)","0",user.photoURL);
-				window.location.href = "home/index.html";
+				writeUserData(user.uid,nombre,email,"Hola, soy nuevo en tonechord :)","0",imagen);
+				//writeCookie('email', user.email, 3);
+				//alert('Registro con exito');
 			  } else {
 				// No user is signed in.
 			  }
@@ -101,7 +127,15 @@
 		setTimeout(function oculto(){$("#mensajeLogin").fadeOut()},3000);
 	}
 	
+	function mostrarMensaje2(texto){
+		console.log(texto);
+		$("#mensajeReg").fadeIn();
+		$("#mensajeReg").html(texto);
+		setTimeout(function oculto(){$("#mensajeReg").fadeOut()},3000);
+	}
+	
 	function writeUserData(userId, name, email,status,prov, imageUrl) {
+	//alert('escribiendo datos');
 	  firebase.database().ref('usuarios/' + userId).set({
 	    uid: userId,
 		nombre: name,
@@ -111,12 +145,13 @@
 		estado: status
 	  }, function(error) {
 		  if (error) {
-			alert("Data could not be saved." + error);
 		  } else {
-			alert("Data saved successfully.");
+			console.log("Data saved successfully.");
+			window.location.href = "home/index.html";
 		  }
 		});
-	}
+	}			console.log("Data could not be saved." + error);
+
 	
 	function clickLogin(){
 		$("#login-div").hide();
@@ -127,6 +162,23 @@
 		$("#registro-div").hide();
 		$("#login-div").fadeIn("fast");
 		document.getElementById("registro-div").style.display = "none";
+	}
+	
+	function bd(){
+		 firebase.database().ref('usuarios/' + 'pruebaid').set({
+	    uid: 'pruebaid',
+		nombre: 'fwed',
+		email: 'wewe',
+		imagen : 'ewewe',
+		proveedor: '1',
+		estado: 'we'
+	  }, function(error) {
+		  if (error) {
+			alert("Data could not be saved." + error);
+		  } else {
+			alert("Data saved successfully.");
+		  }
+		});
 	}
 
 </script>
@@ -160,14 +212,18 @@
 
 <div id="login-div" class="col-12" style="margin: 0 auto;display:inline-block; text-align: center;">
 
+
+
 <div class="hit-the-floor">Iniciar sesión</div>
+
+
 
 	<div id="loginF" class="centrado">
 	
-	<div class="group" style="height: 10px">
+<div class="group" style="height: 10px">
 		<span class="mensajeError" id="mensajeLogin"></span>
-	</div>
-		
+	</div>	
+	  
 		 <div class="group">      
 			<input id="correo" name="correo" type="text" required>
 			<span class="highlight"></span>
@@ -199,6 +255,12 @@
 <div class="hit-the-floor">Registro</div>
 
 	<div id="registroF" class="centrado">
+	
+	<div class="group" style="height: 10px">
+		<span class="mensajeError" id="mensajeReg"></span>
+	</div>
+	  
+	
 	 <div class="group">      
 			<input id="nombreR" name="nombreR" type="text" required>
 			<span class="highlight"></span>
