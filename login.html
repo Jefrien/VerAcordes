@@ -47,6 +47,13 @@
 				localStorage.setItem("uid", null);
 			  }
 			});
+			
+			$("#pass").keypress(function(e) {
+				if(e.which == 13) {
+					login();
+				}
+			});
+						
 	}
 	
 	function setVar(user){
@@ -150,7 +157,7 @@
 			window.location.href = "home/index.html";
 		  }
 		});
-	}			console.log("Data could not be saved." + error);
+	}			
 
 	
 	function clickLogin(){

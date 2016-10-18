@@ -18,6 +18,25 @@
 </head>
 <body>
 
+<div class="element">
+        <div class="loading1">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+	<div class="fondoLoad">
+	<div class="divPrincipal">
+	
+	
+	
+	
 <div class="header">
 
 </div>
@@ -38,22 +57,22 @@
 <a href="#" class="ripplelink"><span>DONAR</span></a>
 <a href="#" class="ripplelink"><span>CONTACTO</span></a>
 </div>
+
+
 </div>
 </div>
 
-<div class="col-12" style="margin-top: 30px">
+<div class="usuarioMenu">
+<span  class="menuUsuarioText"><img id="perfilHeaderImage" style="height:100%;width:100%;border-radius: 50%" src="../img/account-circle.png"></span>
+</div>
+
+<div class="col-12 margen">
 	
 </div>
 
-<div class="col-12">
-<h1 class="subTitulo" id="tituloNombre">
-Bienvenido 
-</h1>
-</div>
-<hr>
-<div class="col-3" style="margin-top: 20px;">
-<a href="#" class="ripplelink" style="height: 50px; padding-left:70px;padding-right:70px"><span>MIS CHORDS</span></a>
-	<a href="#" class="ripplelink" style="height: 50px; padding-left:50px;padding-right:53px"><span>CHORDS ONLINE</span></a>
+<div class="col-3">
+<a href="#" class="ripplelink" style="height: 50px; padding-left:70px;padding-right:70px" onclick="return getChords();"><span>MIS CHORDS</span></a>
+	<a href="#" class="ripplelink" style="height: 50px; padding-left:50px;padding-right:53px" onclick="return getChordsOnline();"><span>CHORDS ONLINE</span></a>
 	<a href="#" class="ripplelink" style="height: 50px; padding-left:60px;padding-right:63px"><span>CREAR CHORD</span></a>
 	<a href="#" class="ripplelink" style="height: 50px; padding-left:55px;padding-right:55px" onclick="signOut()"><span>CERRAR SESIÓN</span></a>
 </div>
@@ -71,6 +90,7 @@ Bienvenido
 
 <div class="col-3">
 	<div class="card" style="align:center;height: 320px;text-align: center;">
+
 		<img width="150px" height="150px"  style="border-radius: 50%;margin-bottom: 10px;" src="https://firebasestorage.googleapis.com/v0/b/tonechord-ae558.appspot.com/o/no_imagen.png?alt=media&token=7b1b3404-0b4d-4fac-840d-ef503ac8de89">
 		<span class="t2" style="margin-bottom: 20px;" id="nombreProfile">usuario</span>
 		
@@ -79,6 +99,13 @@ Bienvenido
 		<span class="t3" id="correoProfile">correo electronico</span>
 		
 	</div>
+	
+	
+
+</div>
+
+
+</div>
 </div>
 
 </body>

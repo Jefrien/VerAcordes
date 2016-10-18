@@ -8,6 +8,10 @@ body {
 	background-color: #f2f2f2;
 }
 
+.divPrincipal{
+	background-color: #f2f2f2;
+}
+
 .row::after {
     content: "";
     clear: both;
@@ -45,7 +49,7 @@ body {
 	display: block;
 	padding-left: 10px;
 	padding-right:10px;
-	z-index: 99999999999;
+	z-index: 999;
  }
  
  .titulo {
@@ -53,7 +57,7 @@ body {
 	width: 20%;
 	height: 75px;
 	top: 0px;
-	z-index: 999999999999;
+	z-index: 9999;
  }
  
  
@@ -69,6 +73,15 @@ body {
 	 font-style: bold;
  }
  
+ .card {
+	 background-color: white;
+	   /* Aqui colocamos la transicion para cada navegador */
+  -webkit-transition:all 0.5s ease-out;  /* Chrome y Safari */
+  -o-transition:all 0.5s ease-out;  /* Opera */
+  -moz-transition:all 0.5s ease-out;  /* Mozilla Firefox */
+  -ms-transition:all 0.5s ease-out;   /* Internet Explorer */
+  transition:all 0.5s ease-out;  /* W3C */
+ }
  
  /* For desktop: */
 .col-1 {width: 8.33%;}
@@ -93,12 +106,17 @@ color: #000;
 -webkit-text-stroke: 1px #ef7716;
 margin-bottom: 20px;
 }
+
+.margen {
+	margin-top: 40px;
+}
+
  .menu {
 	 position: fixed;
 	 margin-top: 5px;
 	float: right;
 	clear: both;
-	z-index: 999999999999;
+	z-index: 9999;
  }
 
   .centrado {
@@ -141,6 +159,12 @@ input 				{
   background-color: white;
   color: black;
   padding: 24px;
+  /* Aqui colocamos la transicion para cada navegador */
+  -webkit-transition:all 0.5s ease-out;  /* Chrome y Safari */
+  -o-transition:all 0.5s ease-out;  /* Opera */
+  -moz-transition:all 0.5s ease-out;  /* Mozilla Firefox */
+  -ms-transition:all 0.5s ease-out;   /* Internet Explorer */
+  transition:all 0.5s ease-out;  /* W3C */
 }
 
  }
@@ -150,6 +174,11 @@ input 				{
     [class*="col-"] {
         width: 100%;
     }
+	
+	.margen {
+	margin-top: -60px;
+}
+
 	 .menu {
 	text-align: center;
 	margin: auto;
@@ -201,6 +230,12 @@ input 				{
   background-color: white;
   color: black;
   padding: 5px;
+  /* Aqui colocamos la transicion para cada navegador */
+  -webkit-transition:all 0.5s ease-out;  /* Chrome y Safari */
+  -o-transition:all 0.5s ease-out;  /* Opera */
+  -moz-transition:all 0.5s ease-out;  /* Mozilla Firefox */
+  -ms-transition:all 0.5s ease-out;   /* Internet Explorer */
+  transition:all 0.5s ease-out;  /* W3C */
 }
  
 }
@@ -412,6 +447,44 @@ input:focus ~ .highlight {
 	color: #c1c1c1;
 }
 
+.usuarioMenu {
+	height: 75px;
+	width: 75px;
+	float: left;
+	position: fixed;
+	top: 0px;
+	padding:10px;
+	right: 10px;
+	line-height: 55px;
+	z-index: 9999;
+}
+
+.menuUsuarioText {
+	color: white;
+	text-decoration: none;
+	transition-property: width;
+    transition-duration: 2s;
+    transition-timing-function: linear;
+    transition-delay: 1s;
+}
+
+.menuUsuarioText a {
+	color: white;
+	font-size: 20px;
+	text-decoration: none;
+/* Aqui colocamos la transicion para cada navegador */
+  -webkit-transition:all 0.5s ease-out;  /* Chrome y Safari */
+  -o-transition:all 0.5s ease-out;  /* Opera */
+  -moz-transition:all 0.5s ease-out;  /* Mozilla Firefox */
+  -ms-transition:all 0.5s ease-out;   /* Internet Explorer */
+  transition:all 0.5s ease-out;  /* W3C */
+}
+
+.menuUsuarioText a:hover {
+	color: white;
+	text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff, 0 0 50px #fff, 0 0 75px #fff;
+}
+
 /* MENSAJES */
 .mensajeError {
 	display: none;
@@ -424,3 +497,199 @@ input:focus ~ .highlight {
 	border-radius: 4px 4px 4px 4px;
 }
 
+
+/* CARD */
+.card:hover {
+	background-color: #edfff7;
+}
+
+
+
+/* LOADING */
+
+
+.fondoLoad{
+	top: 0px;
+	left: 0px;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	-webkit-filter: blur(5px);
+filter: blur(5px);
+	opacity:.75;
+  z-index: 99999999;
+}
+
+.element {
+	
+	position: fixed;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+	z-index: 999999999;
+
+}
+.loading1 {
+    height:100px;
+    position:relative;
+    width:80px;
+}
+.loading1 > div {
+    background-color:#FFFFFF;
+    height:30px;
+    position:absolute;
+    width:12px;
+
+    /* css3 radius */
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+
+    /* css3 transform - scale */
+    -webkit-transform:scale(0.4);
+    -moz-transform:scale(0.4);
+    -o-transform:scale(0.4);
+
+    /* css3 animation */
+    -webkit-animation-name:loading1;
+    -webkit-animation-duration:1.04s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-direction:linear;
+    -moz-animation-name:loading1;
+    -moz-animation-duration:1.04s;
+    -moz-animation-iteration-count:infinite;
+    -moz-animation-direction:linear;
+    -o-animation-name:loading1;
+    -o-animation-duration:1.04s;
+    -o-animation-iteration-count:infinite;
+    -o-animation-direction:linear;
+}
+.loading1 > div:nth-child(1) {
+    left:0;
+    top:36px;
+
+    /* css3 transform - rotate */
+    -webkit-transform:rotate(-90deg);
+    -moz-transform:rotate(-90deg);
+    -o-transform:rotate(-90deg);
+
+    /* css3 animation */
+    -webkit-animation-delay:0.39s;
+    -moz-animation-delay:0.39s;
+    -o-animation-delay:0.39s;
+}
+
+.loading1 > div:nth-child(2) {
+    left:10px;
+    top:13px;
+
+    /* css3 transform - rotate */
+    -webkit-transform:rotate(-45deg);
+    -moz-transform:rotate(-45deg);
+    -o-transform:rotate(-45deg);
+
+    /* css3 animation */
+    -webkit-animation-delay:0.52s;
+    -moz-animation-delay:0.52s;
+    -o-animation-delay:0.52s;
+}
+
+.loading1 > div:nth-child(3) {
+    left:34px;
+    top:4px;
+
+    /* css3 transform - rotate */
+    -webkit-transform:rotate(0deg);
+    -moz-transform:rotate(0deg);
+    -o-transform:rotate(0deg);
+
+    /* css3 animation */
+    -webkit-animation-delay:0.65s;
+    -moz-animation-delay:0.65s;
+    -o-animation-delay:0.65s;
+}
+
+.loading1 > div:nth-child(4) {
+    right:10px;
+    top:13px;
+
+    /* css3 transform - rotate */
+    -webkit-transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    -o-transform:rotate(45deg);
+
+    /* css3 animation */
+    -webkit-animation-delay:0.78s;
+    -moz-animation-delay:0.78s;
+    -o-animation-delay:0.78s;
+}
+.loading1 > div:nth-child(5) {
+    right:0;
+    top:36px;
+
+    /* css3 transform - rotate */
+    -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -o-transform:rotate(90deg);
+
+    /* css3 animation */
+    -webkit-animation-delay:0.91s;
+    -moz-animation-delay:0.91s;
+    -o-animation-delay:0.91s;
+}
+.loading1 > div:nth-child(6) {
+    right:10px;
+    bottom:9px;
+
+    /* css3 transform - rotate */
+    -webkit-transform:rotate(135deg);
+    -moz-transform:rotate(135deg);
+    -o-transform:rotate(135deg);
+
+    /* css3 animation */
+    -webkit-animation-delay:1.04s;
+    -moz-animation-delay:1.04s;
+    -o-animation-delay:1.04s;
+}
+.loading1 > div:nth-child(7) {
+    bottom:0;
+    left:34px;
+
+    /* css3 transform - rotate */
+    -webkit-transform:rotate(180deg);
+    -moz-transform:rotate(180deg);
+    -o-transform:rotate(180deg);
+
+    /* css3 animation */
+    -webkit-animation-delay:1.17s;
+    -moz-animation-delay:1.17s;
+    -o-animation-delay:1.17s;
+}
+.loading1 > div:nth-child(8) {
+    left:10px;
+    bottom:9px;
+
+    /* css3 transform - rotate */
+    -webkit-transform:rotate(-135deg);
+    -moz-transform:rotate(-135deg);
+    -o-transform:rotate(-135deg);
+
+    /* css3 animation */
+    -webkit-animation-delay:1.3s;
+    -moz-animation-delay:1.3s;
+    -o-animation-delay:1.3s;
+}
+
+/* css3 keyframes - loading1 */
+@-webkit-keyframes loading1 {
+    0%{ background-color:#000000 }
+    100%{ background-color:#FFFFFF }
+}
+@-moz-keyframes loading1 {
+    0%{ background-color:#000000 }
+    100%{ background-color:#FFFFFF }
+}
+@-o-keyframes loading1 {
+    0%{ background-color:#000000 }
+    100%{ background-color:#FFFFFF }
+}
